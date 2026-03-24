@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ecommerce-backend
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce?createDatabaseIfNotExist=true
+    username: nabgha
+    password: 44026676
+  jpa:
+    show-sql: true
