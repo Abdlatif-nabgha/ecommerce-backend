@@ -1,6 +1,7 @@
 package com.nabgha.ecommercebackend.controllers;
 
 
+import com.nabgha.ecommercebackend.dtos.UserDto;
 import com.nabgha.ecommercebackend.entities.User;
 import com.nabgha.ecommercebackend.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -19,18 +20,20 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping
-    // method: GET, POST,
-    public List<User> getAllUsers() {
-        List<User> users;
-        users = userRepository.findAll();
-        return users;
+    // method: GET, POST, PUT, DELETE
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> new UserDto(user.getId(), user.getName(),user.getEmail()))
+                .toList();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
         var user = userRepository.findById(id).orElse(null);
         if (user == null) {
             return ResponseEntity.notFound().build(); // if not found return 404
         }
-        return ResponseEntity.ok(user);
+        var userDto = new UserDto(user.getId(), user.getName(), user.getEmail());
+        return ResponseEntity.ok(userDto);
     }
 }
