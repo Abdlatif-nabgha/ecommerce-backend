@@ -40,8 +40,6 @@ public class User {
     public void addToWishlist(Product product) {
         wishlist.add(product);
     }
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private Profile profile;
 
     public void addAddress(Address address) {
         addresses.add(address);

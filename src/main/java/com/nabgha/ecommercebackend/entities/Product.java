@@ -1,11 +1,12 @@
 package com.nabgha.ecommercebackend.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "products")
+@Table(name = "products") @Builder @NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,7 @@ public class Product {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST) // EAGER by default
     @JoinColumn(name = "category_id")
     private Category category;
 }
