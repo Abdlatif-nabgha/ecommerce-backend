@@ -1,7 +1,14 @@
 package com.nabgha.ecommercebackend.dtos;
 
 
-import java.math.BigDecimal;
+import lombok.Data;
 
-public record ProductDto(Long id, String name, String description, BigDecimal price, Byte categoryId) {
+import java.math.BigDecimal;
+@Data
+public class ProductDto {
+    private Long id;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private Byte categoryId;
 }

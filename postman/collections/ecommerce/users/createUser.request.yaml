@@ -1,0 +1,12 @@
+$kind: http-request
+name: createUser
+url: http://localhost:8080/users/5/change-password
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "oldPassword": "12345678",
+        "newPassword": "67890"
+    }
+order: 1589568986734745

@@ -1,6 +1,7 @@
 package com.nabgha.ecommercebackend.repositories;
 
 import com.nabgha.ecommercebackend.entities.Product;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
@@ -14,6 +15,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @EntityGraph(attributePaths = "category")
     // or use this @Query("select p from Product p JOIN FETCH p.category")
     List<Product> findAll();
+
+    @EntityGraph(attributePaths = "category")
+    List<Product> findByCategoryId(Byte categoryId, Sort sort);
 
     @EntityGraph(attributePaths = "category")
     List<Product> findByCategoryId(Byte categoryId);
