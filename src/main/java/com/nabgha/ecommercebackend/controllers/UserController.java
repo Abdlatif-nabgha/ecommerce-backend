@@ -53,13 +53,15 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createUser(
+    public ResponseEntity<?> registerUser(
             @Valid @RequestBody RegisterUserRequest request,//1. Receives JSON and maps it to the DTO
             UriComponentsBuilder uriBuilder
     ) {
         // 1. Check if email exists
         if (userRepository.existsByEmail(request.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email is already taken");
+            return ResponseEntity.badRequest().body(
+                    Map.of("email", "Email is already registered")
+            );
         }
         // 2. The Mapper converts the DTO into a User Entity
         var user = userMapper.toEntity(request);
