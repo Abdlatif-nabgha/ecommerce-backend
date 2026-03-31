@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -26,6 +27,6 @@ public class Cart {
     private LocalDate dateCreated;
 
     @OneToMany(mappedBy = "cart")
-    private Set<CartItem> cartItems = new LinkedHashSet<>();
+    private Set<CartItem> cartItems = new HashSet<>();
 
 }
